@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>写不完的BUG---关于APP每次打开都走入口类的问题 | uuluu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近完成了一个新的项目，在测试的时候发现APP在启动页之后键入首页，按home键进入后台之后，在桌面再次点击进入该APP的时候，又重新开始走启动页的流程，开始以为是后台已经被”杀死”了，但是从后台进入该APP又是正常的，如果把后台APP清除掉，重新在桌面打开，一切都没问题。 由于第一次打开该APP是在安装好APP后，使用系统的安装器打开APP的，进入后台之后再去点击桌面，那么问题很可能的原因是出自">
+<meta property="og:type" content="article">
+<meta property="og:title" content="写不完的BUG---关于APP每次打开都走入口类的问题">
+<meta property="og:url" content="http://yoursite.com/2019/08/02/写不完的BUG-关于APP每次打开都走入口类的问题/index.html">
+<meta property="og:site_name" content="uuluu">
+<meta property="og:description" content="最近完成了一个新的项目，在测试的时候发现APP在启动页之后键入首页，按home键进入后台之后，在桌面再次点击进入该APP的时候，又重新开始走启动页的流程，开始以为是后台已经被”杀死”了，但是从后台进入该APP又是正常的，如果把后台APP清除掉，重新在桌面打开，一切都没问题。 由于第一次打开该APP是在安装好APP后，使用系统的安装器打开APP的，进入后台之后再去点击桌面，那么问题很可能的原因是出自">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/7/16/16bfaea56084e3fc?w=1273&h=132&f=png&s=35100">
+<meta property="og:updated_time" content="2019-08-02T05:25:47.698Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="写不完的BUG---关于APP每次打开都走入口类的问题">
+<meta name="twitter:description" content="最近完成了一个新的项目，在测试的时候发现APP在启动页之后键入首页，按home键进入后台之后，在桌面再次点击进入该APP的时候，又重新开始走启动页的流程，开始以为是后台已经被”杀死”了，但是从后台进入该APP又是正常的，如果把后台APP清除掉，重新在桌面打开，一切都没问题。 由于第一次打开该APP是在安装好APP后，使用系统的安装器打开APP的，进入后台之后再去点击桌面，那么问题很可能的原因是出自">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/7/16/16bfaea56084e3fc?w=1273&h=132&f=png&s=35100">
+  
+  <link rel="stylesheet" href="/uuluu.github.io/css/index.css">
+</head>
+</html>
+<body style="
+
+
+  background-color: #eff0f6
+
+">
+  <div id="container">
+    <nav id="nav">
+  <header class="header">
+    <a href="/" class="title">uuluu</a>
+  </header>
+  <div class="ctnWrap">
+    <div class="icons">
+      
+        
+          
+            <a href="https://dribbble.com/clovertuan" target="_blank" class="nav-icn iconfont icon-dribbble"></a>
+          
+        
+          
+            <a href="https://www.behance.net/clovertuan" target="_blank" class="nav-icn iconfont icon-behance"></a>
+          
+        
+          
+            <a href="http://clovertuan.lofter.com/" target="_blank" class="nav-icn iconfont icon-lofter"></a>
+          
+        
+          
+            <a href="https://www.instagram.com/clovertuan/" target="_blank" class="nav-icn iconfont icon-instagram"></a>
+          
+        
+          
+            <a href="https://github.com/cloverTuan" target="_blank" class="nav-icn iconfont icon-github"></a>
+          
+        
+      
+    </div>
+    <div class="menu">
+      
+        
+            <a href="/uuluu.github.io/" class="nav-menu ">HOME</a>
+          
+        
+            <a href="/uuluu.github.io/archives" class="nav-menu ">ARCHIVE</a>
+          
+        
+            <a href="/uuluu.github.io/about" class="nav-menu ">ABOUT</a>
+          
+        
+      
+    </div>
+  </div>
+</nav>
+    <div id="main"><section class="article">
+  <h2 class="title">写不完的BUG---关于APP每次打开都走入口类的问题</h2>
+  <p class="sub">Aug 2, 2019</p>
+  <article class="content">
+    <p>最近完成了一个新的项目，在测试的时候发现APP在启动页之后键入首页，按home键进入后台之后，在桌面再次点击进入该APP的时候，又重新开始走启动页的流程，开始以为是后台已经被”杀死”了，但是从后台进入该APP又是正常的，如果把后台APP清除掉，重新在桌面打开，一切都没问题。</p>
+<p>由于第一次打开该APP是在安装好APP后，使用系统的安装器打开APP的，进入后台之后再去点击桌面，那么问题很可能的原因是出自于他们的Intent不一致导致的。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/7/16/16bfaea56084e3fc?w=1273&amp;h=132&amp;f=png&amp;s=35100" alt></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">filterEquals</span><span class="params">(Intent other)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (other == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!Objects.equals(<span class="keyword">this</span>.mAction, other.mAction)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (!Objects.equals(<span class="keyword">this</span>.mData, other.mData)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (!Objects.equals(<span class="keyword">this</span>.mType, other.mType)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (!Objects.equals(<span class="keyword">this</span>.mPackage, other.mPackage)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (!Objects.equals(<span class="keyword">this</span>.mComponent, other.mComponent)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (!Objects.equals(<span class="keyword">this</span>.mCategories, other.mCategories)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上面的图和代码可以分析得出，两者Intent的package不一致导致了它们Intent是不一样的，因为不一致就又导致了需要start的Activity再次被添加到Task上面了，主要的判断逻辑存在于<code>ActivityStarter</code>的<code>startActivityUnchecked()</code>方法内。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">startActivityUnchecked</span><span class="params">(<span class="keyword">final</span> ActivityRecord r, ActivityRecord sourceRecord,</span></span></span><br><span class="line"><span class="function"><span class="params">        IVoiceInteractionSession voiceSession, IVoiceInteractor voiceInteractor,</span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">int</span> startFlags, <span class="keyword">boolean</span> doResume, ActivityOptions options, TaskRecord inTask,</span></span></span><br><span class="line"><span class="function"><span class="params">        ActivityRecord[] outActivity)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//省略其余代码</span></span><br><span class="line">    ...</span><br><span class="line">    ActivityRecord reusedActivity = getReusableIntentActivity();</span><br><span class="line">    <span class="keyword">if</span> (reusedActivity != <span class="keyword">null</span>) &#123;</span><br><span class="line">        ...</span><br><span class="line">        reusedActivity = setTargetStackAndMoveToFrontIfNeeded(reusedActivity);</span><br><span class="line">        ...</span><br><span class="line">        setTaskFromIntentActivity(reusedActivity);</span><br><span class="line">      </span><br><span class="line">        <span class="comment">//如果满足条件就直接返回，下面的方法都将不会被执行了</span></span><br><span class="line">        <span class="keyword">if</span> (!mAddingToTask &amp;&amp; mReuseTask == <span class="keyword">null</span>) &#123;</span><br><span class="line">                resumeTargetStackIfNeeded();</span><br><span class="line">                <span class="keyword">if</span> (outActivity != <span class="keyword">null</span> &amp;&amp; outActivity.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    outActivity[<span class="number">0</span>] = reusedActivity;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> START_TASK_TO_FRONT;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里主要的操作是获取一个可以复用的Task的栈顶的Activity，将该Task移动到前台，具体的分析可以看<a href="https://juejin.im/post/5ce900cdf265da1b827a783a" target="_blank" rel="noopener">这里</a>，重点看<code>setTaskFromIntentActivity</code>方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setTaskFromIntentActivity</span><span class="params">(ActivityRecord intentActivity)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> ((mLaunchFlags &amp; (FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK))</span><br><span class="line">                == (FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK)) &#123;</span><br><span class="line">            <span class="comment">//若设置了该Flag,则清空Task，设置Intent</span></span><br><span class="line">            <span class="keyword">final</span> TaskRecord task = intentActivity.getTask();</span><br><span class="line">            task.performClearTaskLocked();</span><br><span class="line">            mReuseTask = task;</span><br><span class="line">            mReuseTask.setIntent(mStartActivity);</span><br><span class="line"></span><br><span class="line">            mMovedOtherTask = <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> ((mLaunchFlags &amp; FLAG_ACTIVITY_CLEAR_TOP) != <span class="number">0</span></span><br><span class="line">                || mLaunchSingleInstance || mLaunchSingleTask) &#123;</span><br><span class="line">            ActivityRecord top = intentActivity.getTask().performClearTaskLocked(mStartActivity,</span><br><span class="line">                    mLaunchFlags);</span><br><span class="line">            <span class="keyword">if</span> (top == <span class="keyword">null</span>) &#123;</span><br><span class="line">                mAddingToTask = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">                mStartActivity.setTask(<span class="keyword">null</span>);</span><br><span class="line">                mSourceRecord = intentActivity;</span><br><span class="line">                <span class="keyword">final</span> TaskRecord task = mSourceRecord.getTask();</span><br><span class="line">                <span class="keyword">if</span> (task != <span class="keyword">null</span> &amp;&amp; task.getStack() == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    mTargetStack = computeStackFocus(mSourceRecord, <span class="keyword">false</span> <span class="comment">/* newTask */</span>,</span><br><span class="line">                            <span class="keyword">null</span> <span class="comment">/* bounds */</span>, mLaunchFlags, mOptions);</span><br><span class="line">                    mTargetStack.addTask(task,</span><br><span class="line">                            !mLaunchTaskBehind <span class="comment">/* toTop */</span>, <span class="string">"startActivityUnchecked"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">           &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (mStartActivity.realActivity.equals(intentActivity.getTask().realActivity)) &#123;</span><br><span class="line">            <span class="comment">//此时重点看这个判断里面代码,当前未设置FLAG_ACTIVITY_SINGLE_TOP，所以走else方法</span></span><br><span class="line">            <span class="keyword">if</span> (((mLaunchFlags &amp; FLAG_ACTIVITY_SINGLE_TOP) != <span class="number">0</span> || mLaunchSingleTop)</span><br><span class="line">                    &amp;&amp; intentActivity.realActivity.equals(mStartActivity.realActivity)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (intentActivity.frontOfTask) &#123;</span><br><span class="line">                    intentActivity.getTask().setIntent(mStartActivity);</span><br><span class="line">                &#125;</span><br><span class="line">                deliverNewIntent(intentActivity);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!intentActivity.getTask().isSameIntentFilter(mStartActivity)) &#123;</span><br><span class="line">                mAddingToTask = <span class="keyword">true</span>;</span><br><span class="line">                mSourceRecord = intentActivity;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> ((mLaunchFlags &amp; FLAG_ACTIVITY_RESET_TASK_IF_NEEDED) == <span class="number">0</span>) &#123;</span><br><span class="line">            mAddingToTask = <span class="keyword">true</span>;</span><br><span class="line">            mSourceRecord = intentActivity;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!intentActivity.getTask().rootWasReset) &#123;</span><br><span class="line">            intentActivity.getTask().setIntent(mStartActivity);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在该方法内，<code>isSameIntentFilter()</code>最后是调用到Intent的<code>filterEquals()</code>方法，就是文章开始贴出来的那段代码，假如Intent的相同，那么<code>mAddingToTask</code>依旧为false且mReuseTask也是为null，所以直接<code>return START_TASK_TO_FRONT</code>，造成的效果就是把后台的Task移动前台；那么此时判断的Intent是不相同的，它将会继续走下面的将Activity添加到Task上的操作，就相当于前面所说的，又开始走启动页流程了，因为现在Task的栈顶Activity就是启动页Activity。</p>
+<p>由于偷懒没有去找系统的安装器的源码，所以使用下面的代码复现了一下这个问题</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage(<span class="string">"xxxxxx"</span>);</span><br><span class="line"><span class="keyword">if</span> (intent != <span class="keyword">null</span>) &#123;</span><br><span class="line">    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</span><br><span class="line">    startActivity(intent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在getLaunchIntentForPackage可以看到给Intent设置了Package</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">ApplicationPackageManager.java</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Intent <span class="title">getLaunchIntentForPackage</span><span class="params">(String packageName)</span> </span>&#123;</span><br><span class="line">        Intent intentToResolve = <span class="keyword">new</span> Intent(Intent.ACTION_MAIN);</span><br><span class="line">        intentToResolve.addCategory(Intent.CATEGORY_INFO);</span><br><span class="line">        intentToResolve.setPackage(packageName);</span><br><span class="line">        List&lt;ResolveInfo&gt; ris = queryIntentActivities(intentToResolve, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Otherwise, try to find a main launcher activity.</span></span><br><span class="line">        <span class="keyword">if</span> (ris == <span class="keyword">null</span> || ris.size() &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// reuse the intent instance</span></span><br><span class="line">            intentToResolve.removeCategory(Intent.CATEGORY_INFO);</span><br><span class="line">            intentToResolve.addCategory(Intent.CATEGORY_LAUNCHER);</span><br><span class="line">            intentToResolve.setPackage(packageName);</span><br><span class="line">            ris = queryIntentActivities(intentToResolve, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (ris == <span class="keyword">null</span> || ris.size() &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Intent intent = <span class="keyword">new</span> Intent(intentToResolve);</span><br><span class="line">        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</span><br><span class="line">        intent.setClassName(ris.get(<span class="number">0</span>).activityInfo.packageName,</span><br><span class="line">                ris.get(<span class="number">0</span>).activityInfo.name);</span><br><span class="line">        <span class="keyword">return</span> intent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所以解决办法就是就是手动将package设置为null，如果是不能直接修改的，则可以在启动页判断目前Activity的isTaskRoot，出现问题的情况下栈内的情况应该是A-B-A，此时把A finish了，就变成正常的A-B。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">    <span class="keyword">if</span> (!isTaskRoot) &#123;</span><br><span class="line">        finish()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面是无关紧要的备注</p>
+<p>从文章最开始的图片可以看到，第一个Intent的flag为0x10600000，第二个Intent的flag为0x10000000，开始的时候直接是系统启动器打开APP的，所以系统启动器打开APP附加<code>FLAG_ACTIVITY_NEW_TASK</code>，桌面点击启动的时候会附加<code>FLAG_ACTIVITY_NEW_TASK</code>、<code>FLAG_ACTIVITY_RESET_TASK_IF_NEEDED(0x00200000)</code>，由于从后台转前台，再附加一个<code>FLAG_ACTIVITY_BROUGHT_TO_FRONT(0x00400000)</code></p>
+
+  </article>
+  <footer class="f-cf">
+    
+      <a href="/uuluu.github.io/2019/08/02/捋不清的源码-ViewModel/" class="link f-fl">⟵捋不清的源码---ViewModel</a>
+    
+    
+      <a href="/uuluu.github.io/2019/08/02/写不完的BUG-记录一次ARouter使用问题/" class="link f-fr">写不完的BUG---记录一次ARouter使用问题⟶</a>
+    
+  </footer>
+</section></div>
+    <footer id="footer" class="f-cf">
+  d.guangying@foxmail.com
+  
+    
+      
+        · <a href="https://dribbble.com/clovertuan" target="_blank" class="nav-icn">Dribbble</a>
+      
+    
+      
+        · <a href="https://www.behance.net/clovertuan" target="_blank" class="nav-icn">Behance</a>
+      
+    
+      
+        · <a href="http://clovertuan.lofter.com/" target="_blank" class="nav-icn">Lofter</a>
+      
+    
+      
+        · <a href="https://www.instagram.com/clovertuan/" target="_blank" class="nav-icn">Instagram</a>
+      
+    
+      
+        · <a href="https://github.com/cloverTuan" target="_blank" class="nav-icn">GitHub</a>
+      
+    
+  
+  <span class="copyright">All rights reserved @Clover Tuan</span>
+</footer>
+  </div>
+</body>
+</html>
