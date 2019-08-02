@@ -1,84 +1,136 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
-  
-  <title>Android事件分发学习记录 | uuluu</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ViewGroup的dispatchTouchEvent123456if (actionMasked == MotionEvent.ACTION_DOWN) &amp;#123;  	//清除所有的触摸链touch targets，mFirstTouchTarget为null  	//重置touch状态标识，所以说明requestDisallowInterceptTouchEvent方法对于DOWN事件是">
+<html lang>
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="Android事件分发学习记录">
+
+
+
+
+  <meta name="keywords" content="随笔,">
+
+
+
+
+
+  <link rel="alternate" href="/uuluu.github.io/default" title="LLL_">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/uuluu.github.io/favicon.ico?v=1.1">
+
+
+
+<link rel="canonical" href="http://yoursite.com/2019/04/24/my-site/">
+
+
+<meta name="description" content="ViewGroup的dispatchTouchEvent123456if (actionMasked == MotionEvent.ACTION_DOWN) &amp;#123;  	//清除所有的触摸链touch targets，mFirstTouchTarget为null  	//重置touch状态标识，所以说明requestDisallowInterceptTouchEvent方法对于DOWN事件是">
 <meta name="keywords" content="随笔">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android事件分发学习记录">
 <meta property="og:url" content="http://yoursite.com/2019/04/24/my-site/index.html">
-<meta property="og:site_name" content="uuluu">
+<meta property="og:site_name" content="LLL_">
 <meta property="og:description" content="ViewGroup的dispatchTouchEvent123456if (actionMasked == MotionEvent.ACTION_DOWN) &amp;#123;  	//清除所有的触摸链touch targets，mFirstTouchTarget为null  	//重置touch状态标识，所以说明requestDisallowInterceptTouchEvent方法对于DOWN事件是">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2019-05-14T12:52:07.122Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android事件分发学习记录">
 <meta name="twitter:description" content="ViewGroup的dispatchTouchEvent123456if (actionMasked == MotionEvent.ACTION_DOWN) &amp;#123;  	//清除所有的触摸链touch targets，mFirstTouchTarget为null  	//重置touch状态标识，所以说明requestDisallowInterceptTouchEvent方法对于DOWN事件是">
+
+
+<link rel="stylesheet" type="text/css" href="/uuluu.github.io/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
   
-  <link rel="stylesheet" href="/uuluu.github.io/css/index.css">
-</head>
-</html>
-<body style="
 
 
-  background-color: #eff0f6
 
-">
-  <div id="container">
-    <nav id="nav">
-  <header class="header">
-    <a href="/" class="title">uuluu</a>
-  </header>
-  <div class="ctnWrap">
-    <div class="icons">
-      
+    <title> Android事件分发学习记录 - LLL_ </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/uuluu.github.io/." class="logo">LLL_</a>
+    </h1>
+
+    <nav id="nav-top">
         
-          
-            <a href="https://dribbble.com/clovertuan" target="_blank" class="nav-icn iconfont icon-dribbble"></a>
-          
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/uuluu.github.io/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/uuluu.github.io/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
         
-          
-            <a href="https://www.behance.net/clovertuan" target="_blank" class="nav-icn iconfont icon-behance"></a>
-          
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
         
-          
-            <a href="http://clovertuan.lofter.com/" target="_blank" class="nav-icn iconfont icon-lofter"></a>
-          
+    <div id="primary">
         
-          
-            <a href="https://www.instagram.com/clovertuan/" target="_blank" class="nav-icn iconfont icon-instagram"></a>
-          
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
         
-          
-            <a href="https://github.com/cloverTuan" target="_blank" class="nav-icn iconfont icon-github"></a>
-          
+          Android事件分发学习记录
         
-      
-    </div>
-    <div class="menu">
-      
-        
-            <a href="/uuluu.github.io/" class="nav-menu ">HOME</a>
-          
-        
-            <a href="/uuluu.github.io/archives" class="nav-menu ">ARCHIVE</a>
-          
-        
-            <a href="/uuluu.github.io/about" class="nav-menu ">ABOUT</a>
-          
-        
-      
-    </div>
-  </div>
-</nav>
-    <div id="main"><section class="article">
-  <h2 class="title">Android事件分发学习记录</h2>
-  <p class="sub">Apr 24, 2019</p>
-  <article class="content">
-    <h3 id="ViewGroup的dispatchTouchEvent"><a href="#ViewGroup的dispatchTouchEvent" class="headerlink" title="ViewGroup的dispatchTouchEvent"></a>ViewGroup的dispatchTouchEvent</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (actionMasked == MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">  	<span class="comment">//清除所有的触摸链touch targets，mFirstTouchTarget为null</span></span><br><span class="line">  	<span class="comment">//重置touch状态标识，所以说明requestDisallowInterceptTouchEvent方法对于DOWN事件是无效的</span></span><br><span class="line">    cancelAndClearTouchTargets(ev);</span><br><span class="line">    resetTouchState();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      </h1>
+
+      <time class="post-time">
+          Apr 24 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h3 id="ViewGroup的dispatchTouchEvent"><a href="#ViewGroup的dispatchTouchEvent" class="headerlink" title="ViewGroup的dispatchTouchEvent"></a>ViewGroup的dispatchTouchEvent</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (actionMasked == MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">  	<span class="comment">//清除所有的触摸链touch targets，mFirstTouchTarget为null</span></span><br><span class="line">  	<span class="comment">//重置touch状态标识，所以说明requestDisallowInterceptTouchEvent方法对于DOWN事件是无效的</span></span><br><span class="line">    cancelAndClearTouchTargets(ev);</span><br><span class="line">    resetTouchState();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">boolean</span> intercepted;</span><br><span class="line"><span class="keyword">if</span> (actionMasked == MotionEvent.ACTION_DOWN</span><br><span class="line">        || mFirstTouchTarget != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">//检查是否需要拦截Touch事件</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">boolean</span> disallowIntercept = (mGroupFlags &amp; FLAG_DISALLOW_INTERCEPT) != <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (!disallowIntercept) &#123;</span><br><span class="line">        intercepted = onInterceptTouchEvent(ev);</span><br><span class="line">        ev.setAction(action); </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        intercepted = <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">//不是DOWN事件并且mFirstTouchTarget为null，说明拦截Touch事件</span></span><br><span class="line">    intercepted = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>mFirstTouchTarget不为null表示没有拦截Touch事件并且子View消费了该事件。</p>
@@ -115,41 +167,81 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">E/Test-Activity: 		dispatchTouchEvent:ACTION_DOWN</span><br><span class="line">E/Test-ViewGroup—A: dispatchTouchEvent:ACTION_DOWN</span><br><span class="line">E/Test-ViewGroup—A: onInterceptTouchEvent:ACTION_DOWN</span><br><span class="line">E/Test-ViewGroup—B: dispatchTouchEvent:ACTION_DOWN</span><br><span class="line">E/Test-ViewGroup—B: onInterceptTouchEvent:ACTION_DOWN</span><br><span class="line">E/Test-View: 				dispatchTouchEvent:ACTION_DOWN</span><br><span class="line">E/Test-View: 				onTouchEvent:ACTION_DOWN</span><br><span class="line"></span><br><span class="line">E/Test-Activity: 		dispatchTouchEvent:ACTION_MOVE</span><br><span class="line">E/Test-ViewGroup—A: dispatchTouchEvent:ACTION_MOVE</span><br><span class="line">E/Test-ViewGroup—A: onInterceptTouchEvent:ACTION_MOVE</span><br><span class="line">E/Test-ViewGroup—B: dispatchTouchEvent:ACTION_MOVE</span><br><span class="line">E/Test-ViewGroup—B: onInterceptTouchEvent:ACTION_MOVE</span><br><span class="line"></span><br><span class="line">E/Test-Activity: 		dispatchTouchEvent:ACTION_MOVE</span><br><span class="line">E/Test-ViewGroup—A: dispatchTouchEvent:ACTION_MOVE</span><br><span class="line">E/Test-ViewGroup—A: onInterceptTouchEvent:ACTION_MOVE</span><br><span class="line">E/Test-ViewGroup—B: dispatchTouchEvent:ACTION_MOVE</span><br><span class="line">E/Test-ViewGroup—B: onTouchEvent:ACTION_MOVE</span><br><span class="line">E/Test-Activity: 		onTouchEvent:ACTION_MOVE</span><br><span class="line"></span><br><span class="line">E/Test-Activity: 		dispatchTouchEvent:ACTION_UP</span><br><span class="line">E/Test-ViewGroup—A: dispatchTouchEvent:ACTION_UP</span><br><span class="line">E/Test-ViewGroup—A: onInterceptTouchEvent:ACTION_UP</span><br><span class="line">E/Test-ViewGroup—B: dispatchTouchEvent:ACTION_UP</span><br><span class="line">E/Test-ViewGroup—B: onTouchEvent:ACTION_UP</span><br><span class="line">E/Test-Activity: 		onTouchEvent:ACTION_UP</span><br></pre></td></tr></table></figure>
 <p>DOWN事件的时候，A和B的mFirstTouchTarget都不为null，MOVE事件到来的时候，此时intercept为true，则cancelChild为true，B的mFirstTouchTarget会变为null，在接下来的MOVE事件到来的时候，会调用自己的onTouchEvent返回false到A默认handled默认返回false，Activity调用onTouchEvent</p>
 
-  </article>
-  <footer class="f-cf">
+            </div>
+          
+
     
-      <a href="/uuluu.github.io/2019/06/05/捋不清的源码-Activity启动模式相关/" class="link f-fl">⟵捋不清的源码---Activity启动模式相关</a>
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/uuluu.github.io/tags/随笔/">随笔</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/uuluu.github.io/2019/06/05/捋不清的源码-Activity启动模式相关/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">捋不清的源码---Activity启动模式相关</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
     
     
-  </footer>
-</section></div>
-    <footer id="footer" class="f-cf">
-  d.guangying@foxmail.com
-  
+  </nav>
+
+        
+  <div class="comments" id="comments">
     
-      
-        · <a href="https://dribbble.com/clovertuan" target="_blank" class="nav-icn">Dribbble</a>
-      
-    
-      
-        · <a href="https://www.behance.net/clovertuan" target="_blank" class="nav-icn">Behance</a>
-      
-    
-      
-        · <a href="http://clovertuan.lofter.com/" target="_blank" class="nav-icn">Lofter</a>
-      
-    
-      
-        · <a href="https://www.instagram.com/clovertuan/" target="_blank" class="nav-icn">Instagram</a>
-      
-    
-      
-        · <a href="https://github.com/cloverTuan" target="_blank" class="nav-icn">GitHub</a>
-      
-    
-  
-  <span class="copyright">All rights reserved @Clover Tuan</span>
-</footer>
   </div>
-</body>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">uu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/uuluu.github.io/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/uuluu.github.io/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/uuluu.github.io/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
 </html>

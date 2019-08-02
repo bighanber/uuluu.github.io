@@ -1,83 +1,136 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
-  
-  <title>捋不清的源码---ViewModel | uuluu</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="版本: androidx.appcompat:appcompat:1.0.2 androidx.lifecycle:lifecycle-extensions:2.0.0  ViewModel的基本使用方式是ViewModelProviders.of(this).get(viewModelClass)，就按照该使用流程捋一捋源码 ViewModelProviders.java12345678910">
+<html lang>
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="捋不清的源码---ViewModel">
+
+
+
+
+  <meta name="keywords" content="源码,">
+
+
+
+
+
+  <link rel="alternate" href="/uuluu.github.io/default" title="LLL_">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/uuluu.github.io/favicon.ico?v=1.1">
+
+
+
+<link rel="canonical" href="http://yoursite.com/2019/08/02/捋不清的源码-ViewModel/">
+
+
+<meta name="description" content="版本: androidx.appcompat:appcompat:1.0.2 androidx.lifecycle:lifecycle-extensions:2.0.0  ViewModel的基本使用方式是ViewModelProviders.of(this).get(viewModelClass)，就按照该使用流程捋一捋源码 ViewModelProviders.java12345678910">
+<meta name="keywords" content="源码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="捋不清的源码---ViewModel">
 <meta property="og:url" content="http://yoursite.com/2019/08/02/捋不清的源码-ViewModel/index.html">
-<meta property="og:site_name" content="uuluu">
+<meta property="og:site_name" content="LLL_">
 <meta property="og:description" content="版本: androidx.appcompat:appcompat:1.0.2 androidx.lifecycle:lifecycle-extensions:2.0.0  ViewModel的基本使用方式是ViewModelProviders.of(this).get(viewModelClass)，就按照该使用流程捋一捋源码 ViewModelProviders.java12345678910">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-02T05:26:47.212Z">
+<meta property="og:updated_time" content="2019-08-02T05:39:24.900Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="捋不清的源码---ViewModel">
 <meta name="twitter:description" content="版本: androidx.appcompat:appcompat:1.0.2 androidx.lifecycle:lifecycle-extensions:2.0.0  ViewModel的基本使用方式是ViewModelProviders.of(this).get(viewModelClass)，就按照该使用流程捋一捋源码 ViewModelProviders.java12345678910">
+
+
+<link rel="stylesheet" type="text/css" href="/uuluu.github.io/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
   
-  <link rel="stylesheet" href="/uuluu.github.io/css/index.css">
-</head>
-</html>
-<body style="
 
 
-  background-color: #eff0f6
 
-">
-  <div id="container">
-    <nav id="nav">
-  <header class="header">
-    <a href="/" class="title">uuluu</a>
-  </header>
-  <div class="ctnWrap">
-    <div class="icons">
-      
+    <title> 捋不清的源码---ViewModel - LLL_ </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/uuluu.github.io/." class="logo">LLL_</a>
+    </h1>
+
+    <nav id="nav-top">
         
-          
-            <a href="https://dribbble.com/clovertuan" target="_blank" class="nav-icn iconfont icon-dribbble"></a>
-          
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/uuluu.github.io/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/uuluu.github.io/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
         
-          
-            <a href="https://www.behance.net/clovertuan" target="_blank" class="nav-icn iconfont icon-behance"></a>
-          
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
         
-          
-            <a href="http://clovertuan.lofter.com/" target="_blank" class="nav-icn iconfont icon-lofter"></a>
-          
+    <div id="primary">
         
-          
-            <a href="https://www.instagram.com/clovertuan/" target="_blank" class="nav-icn iconfont icon-instagram"></a>
-          
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
         
-          
-            <a href="https://github.com/cloverTuan" target="_blank" class="nav-icn iconfont icon-github"></a>
-          
+          捋不清的源码---ViewModel
         
-      
-    </div>
-    <div class="menu">
-      
-        
-            <a href="/uuluu.github.io/" class="nav-menu ">HOME</a>
-          
-        
-            <a href="/uuluu.github.io/archives" class="nav-menu ">ARCHIVE</a>
-          
-        
-            <a href="/uuluu.github.io/about" class="nav-menu ">ABOUT</a>
-          
-        
-      
-    </div>
-  </div>
-</nav>
-    <div id="main"><section class="article">
-  <h2 class="title">捋不清的源码---ViewModel</h2>
-  <p class="sub">Aug 2, 2019</p>
-  <article class="content">
-    <blockquote>
+      </h1>
+
+      <time class="post-time">
+          Aug 02 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <blockquote>
 <p>版本:</p>
 <p>androidx.appcompat:appcompat:1.0.2</p>
 <p>androidx.lifecycle:lifecycle-extensions:2.0.0</p>
@@ -101,43 +154,87 @@
 <p>这时候回到<code>getLastNonConfigurationInstance</code>方法，此时<code>mLastNonConfigurationInstances</code>不为null，返回<code>mLastNonConfigurationInstances.activity</code>，即得到了上次FragmentActivity的NonConfigurationInstances对象，也就表示获得了上次该Activity内的<code>mViewModelStore</code>，所以就算屏幕旋转，系统也会根据<code>getLastNonConfigurationInstance</code>和<code>onRetainNonConfigurationInstance</code>来保存好<code>ViewModelStore</code></p>
 <h5 id="FragmentActivity-java-onCreate"><a href="#FragmentActivity-java-onCreate" class="headerlink" title="FragmentActivity.java - onCreate"></a>FragmentActivity.java - onCreate</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//都会先获取NonConfigurationInstances</span></span><br><span class="line">    <span class="comment">//就算屏幕旋转了也能重新获取上次的mViewModelStore，在getViewModelStore能直接返回</span></span><br><span class="line">    NonConfigurationInstances nc =</span><br><span class="line">                (NonConfigurationInstances) getLastNonConfigurationInstance();</span><br><span class="line">    <span class="keyword">if</span> (nc != <span class="keyword">null</span> &amp;&amp; nc.viewModelStore != <span class="keyword">null</span> &amp;&amp; mViewModelStore == <span class="keyword">null</span>) &#123;</span><br><span class="line">        mViewModelStore = nc.viewModelStore;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">if</span> (savedInstanceState != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">//在onSaveInstanceState中mFragments.saveAllState()</span></span><br><span class="line">        <span class="comment">//会将fragments、ViewModelStores等封装到FragmentManagerNonConfig内</span></span><br><span class="line">        mFragments.restoreAllState(p, nc != <span class="keyword">null</span> ? nc.fragments : <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="FragmentActivity-java-onDestroy"><a href="#FragmentActivity-java-onDestroy" class="headerlink" title="FragmentActivity.java - onDestroy"></a>FragmentActivity.java - onDestroy</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onDestroy();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (mViewModelStore != <span class="keyword">null</span> &amp;&amp; !isChangingConfigurations()) &#123;</span><br><span class="line">        mViewModelStore.clear();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    mFragments.dispatchDestroy();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-  </article>
-  <footer class="f-cf">
+            </div>
+          
+
     
-      <a href="/uuluu.github.io/2019/08/02/捋不清-Glide感知网络变化/" class="link f-fl">⟵捋不清---Glide感知网络变化</a>
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/uuluu.github.io/tags/源码/">源码</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/uuluu.github.io/2019/08/02/捋不清-Glide感知网络变化/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">捋不清---Glide感知网络变化</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
     
     
-      <a href="/uuluu.github.io/2019/08/02/写不完的BUG-关于APP每次打开都走入口类的问题/" class="link f-fr">写不完的BUG---关于APP每次打开都走入口类的问题⟶</a>
+      <a class="next" href="/uuluu.github.io/2019/08/02/写不完的BUG-关于APP每次打开都走入口类的问题/">
+        <span class="next-text nav-default">写不完的BUG---关于APP每次打开都走入口类的问题</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
-  </footer>
-</section></div>
-    <footer id="footer" class="f-cf">
-  d.guangying@foxmail.com
-  
+  </nav>
+
+        
+  <div class="comments" id="comments">
     
-      
-        · <a href="https://dribbble.com/clovertuan" target="_blank" class="nav-icn">Dribbble</a>
-      
-    
-      
-        · <a href="https://www.behance.net/clovertuan" target="_blank" class="nav-icn">Behance</a>
-      
-    
-      
-        · <a href="http://clovertuan.lofter.com/" target="_blank" class="nav-icn">Lofter</a>
-      
-    
-      
-        · <a href="https://www.instagram.com/clovertuan/" target="_blank" class="nav-icn">Instagram</a>
-      
-    
-      
-        · <a href="https://github.com/cloverTuan" target="_blank" class="nav-icn">GitHub</a>
-      
-    
-  
-  <span class="copyright">All rights reserved @Clover Tuan</span>
-</footer>
   </div>
-</body>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">uu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/uuluu.github.io/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/uuluu.github.io/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/uuluu.github.io/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
 </html>

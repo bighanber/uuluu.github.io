@@ -1,85 +1,138 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
-  
-  <title>写不完的BUG---关于APP每次打开都走入口类的问题 | uuluu</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近完成了一个新的项目，在测试的时候发现APP在启动页之后键入首页，按home键进入后台之后，在桌面再次点击进入该APP的时候，又重新开始走启动页的流程，开始以为是后台已经被”杀死”了，但是从后台进入该APP又是正常的，如果把后台APP清除掉，重新在桌面打开，一切都没问题。 由于第一次打开该APP是在安装好APP后，使用系统的安装器打开APP的，进入后台之后再去点击桌面，那么问题很可能的原因是出自">
+<html lang>
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="写不完的BUG---关于APP每次打开都走入口类的问题">
+
+
+
+
+  <meta name="keywords" content="Android,">
+
+
+
+
+
+  <link rel="alternate" href="/uuluu.github.io/default" title="LLL_">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/uuluu.github.io/favicon.ico?v=1.1">
+
+
+
+<link rel="canonical" href="http://yoursite.com/2019/08/02/写不完的BUG-关于APP每次打开都走入口类的问题/">
+
+
+<meta name="description" content="最近完成了一个新的项目，在测试的时候发现APP在启动页之后键入首页，按home键进入后台之后，在桌面再次点击进入该APP的时候，又重新开始走启动页的流程，开始以为是后台已经被”杀死”了，但是从后台进入该APP又是正常的，如果把后台APP清除掉，重新在桌面打开，一切都没问题。 由于第一次打开该APP是在安装好APP后，使用系统的安装器打开APP的，进入后台之后再去点击桌面，那么问题很可能的原因是出自">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="写不完的BUG---关于APP每次打开都走入口类的问题">
 <meta property="og:url" content="http://yoursite.com/2019/08/02/写不完的BUG-关于APP每次打开都走入口类的问题/index.html">
-<meta property="og:site_name" content="uuluu">
+<meta property="og:site_name" content="LLL_">
 <meta property="og:description" content="最近完成了一个新的项目，在测试的时候发现APP在启动页之后键入首页，按home键进入后台之后，在桌面再次点击进入该APP的时候，又重新开始走启动页的流程，开始以为是后台已经被”杀死”了，但是从后台进入该APP又是正常的，如果把后台APP清除掉，重新在桌面打开，一切都没问题。 由于第一次打开该APP是在安装好APP后，使用系统的安装器打开APP的，进入后台之后再去点击桌面，那么问题很可能的原因是出自">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/7/16/16bfaea56084e3fc?w=1273&h=132&f=png&s=35100">
-<meta property="og:updated_time" content="2019-08-02T05:25:47.698Z">
+<meta property="og:updated_time" content="2019-08-02T05:39:36.104Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="写不完的BUG---关于APP每次打开都走入口类的问题">
 <meta name="twitter:description" content="最近完成了一个新的项目，在测试的时候发现APP在启动页之后键入首页，按home键进入后台之后，在桌面再次点击进入该APP的时候，又重新开始走启动页的流程，开始以为是后台已经被”杀死”了，但是从后台进入该APP又是正常的，如果把后台APP清除掉，重新在桌面打开，一切都没问题。 由于第一次打开该APP是在安装好APP后，使用系统的安装器打开APP的，进入后台之后再去点击桌面，那么问题很可能的原因是出自">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/7/16/16bfaea56084e3fc?w=1273&h=132&f=png&s=35100">
+
+
+<link rel="stylesheet" type="text/css" href="/uuluu.github.io/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
   
-  <link rel="stylesheet" href="/uuluu.github.io/css/index.css">
-</head>
-</html>
-<body style="
 
 
-  background-color: #eff0f6
 
-">
-  <div id="container">
-    <nav id="nav">
-  <header class="header">
-    <a href="/" class="title">uuluu</a>
-  </header>
-  <div class="ctnWrap">
-    <div class="icons">
-      
+    <title> 写不完的BUG---关于APP每次打开都走入口类的问题 - LLL_ </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/uuluu.github.io/." class="logo">LLL_</a>
+    </h1>
+
+    <nav id="nav-top">
         
-          
-            <a href="https://dribbble.com/clovertuan" target="_blank" class="nav-icn iconfont icon-dribbble"></a>
-          
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/uuluu.github.io/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/uuluu.github.io/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
         
-          
-            <a href="https://www.behance.net/clovertuan" target="_blank" class="nav-icn iconfont icon-behance"></a>
-          
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
         
-          
-            <a href="http://clovertuan.lofter.com/" target="_blank" class="nav-icn iconfont icon-lofter"></a>
-          
+    <div id="primary">
         
-          
-            <a href="https://www.instagram.com/clovertuan/" target="_blank" class="nav-icn iconfont icon-instagram"></a>
-          
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
         
-          
-            <a href="https://github.com/cloverTuan" target="_blank" class="nav-icn iconfont icon-github"></a>
-          
+          写不完的BUG---关于APP每次打开都走入口类的问题
         
-      
-    </div>
-    <div class="menu">
-      
-        
-            <a href="/uuluu.github.io/" class="nav-menu ">HOME</a>
-          
-        
-            <a href="/uuluu.github.io/archives" class="nav-menu ">ARCHIVE</a>
-          
-        
-            <a href="/uuluu.github.io/about" class="nav-menu ">ABOUT</a>
-          
-        
-      
-    </div>
-  </div>
-</nav>
-    <div id="main"><section class="article">
-  <h2 class="title">写不完的BUG---关于APP每次打开都走入口类的问题</h2>
-  <p class="sub">Aug 2, 2019</p>
-  <article class="content">
-    <p>最近完成了一个新的项目，在测试的时候发现APP在启动页之后键入首页，按home键进入后台之后，在桌面再次点击进入该APP的时候，又重新开始走启动页的流程，开始以为是后台已经被”杀死”了，但是从后台进入该APP又是正常的，如果把后台APP清除掉，重新在桌面打开，一切都没问题。</p>
+      </h1>
+
+      <time class="post-time">
+          Aug 02 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <p>最近完成了一个新的项目，在测试的时候发现APP在启动页之后键入首页，按home键进入后台之后，在桌面再次点击进入该APP的时候，又重新开始走启动页的流程，开始以为是后台已经被”杀死”了，但是从后台进入该APP又是正常的，如果把后台APP清除掉，重新在桌面打开，一切都没问题。</p>
 <p>由于第一次打开该APP是在安装好APP后，使用系统的安装器打开APP的，进入后台之后再去点击桌面，那么问题很可能的原因是出自于他们的Intent不一致导致的。</p>
 <p><img src="https://user-gold-cdn.xitu.io/2019/7/16/16bfaea56084e3fc?w=1273&amp;h=132&amp;f=png&amp;s=35100" alt></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">filterEquals</span><span class="params">(Intent other)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (other == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!Objects.equals(<span class="keyword">this</span>.mAction, other.mAction)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (!Objects.equals(<span class="keyword">this</span>.mData, other.mData)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (!Objects.equals(<span class="keyword">this</span>.mType, other.mType)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (!Objects.equals(<span class="keyword">this</span>.mPackage, other.mPackage)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (!Objects.equals(<span class="keyword">this</span>.mComponent, other.mComponent)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (!Objects.equals(<span class="keyword">this</span>.mCategories, other.mCategories)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -97,43 +150,87 @@
 <p>下面是无关紧要的备注</p>
 <p>从文章最开始的图片可以看到，第一个Intent的flag为0x10600000，第二个Intent的flag为0x10000000，开始的时候直接是系统启动器打开APP的，所以系统启动器打开APP附加<code>FLAG_ACTIVITY_NEW_TASK</code>，桌面点击启动的时候会附加<code>FLAG_ACTIVITY_NEW_TASK</code>、<code>FLAG_ACTIVITY_RESET_TASK_IF_NEEDED(0x00200000)</code>，由于从后台转前台，再附加一个<code>FLAG_ACTIVITY_BROUGHT_TO_FRONT(0x00400000)</code></p>
 
-  </article>
-  <footer class="f-cf">
+            </div>
+          
+
     
-      <a href="/uuluu.github.io/2019/08/02/捋不清的源码-ViewModel/" class="link f-fl">⟵捋不清的源码---ViewModel</a>
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/uuluu.github.io/tags/Android/">Android</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/uuluu.github.io/2019/08/02/捋不清的源码-ViewModel/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">捋不清的源码---ViewModel</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
     
     
-      <a href="/uuluu.github.io/2019/08/02/写不完的BUG-记录一次ARouter使用问题/" class="link f-fr">写不完的BUG---记录一次ARouter使用问题⟶</a>
+      <a class="next" href="/uuluu.github.io/2019/08/02/写不完的BUG-记录一次ARouter使用问题/">
+        <span class="next-text nav-default">写不完的BUG---记录一次ARouter使用问题</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
-  </footer>
-</section></div>
-    <footer id="footer" class="f-cf">
-  d.guangying@foxmail.com
-  
+  </nav>
+
+        
+  <div class="comments" id="comments">
     
-      
-        · <a href="https://dribbble.com/clovertuan" target="_blank" class="nav-icn">Dribbble</a>
-      
-    
-      
-        · <a href="https://www.behance.net/clovertuan" target="_blank" class="nav-icn">Behance</a>
-      
-    
-      
-        · <a href="http://clovertuan.lofter.com/" target="_blank" class="nav-icn">Lofter</a>
-      
-    
-      
-        · <a href="https://www.instagram.com/clovertuan/" target="_blank" class="nav-icn">Instagram</a>
-      
-    
-      
-        · <a href="https://github.com/cloverTuan" target="_blank" class="nav-icn">GitHub</a>
-      
-    
-  
-  <span class="copyright">All rights reserved @Clover Tuan</span>
-</footer>
   </div>
-</body>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">uu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/uuluu.github.io/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/uuluu.github.io/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/uuluu.github.io/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
 </html>

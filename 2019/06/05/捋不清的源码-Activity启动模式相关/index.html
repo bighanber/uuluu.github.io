@@ -1,83 +1,136 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
-  
-  <title>捋不清的源码---Activity启动模式相关 | uuluu</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="源码基于Android 8.1  Launcher.java12345678910111213141516171819202122232425public boolean startActivitySafely(View v, Intent intent, ItemInfo item) &amp;#123;    ...    intent.addFlags(Intent.FLAG_ACTIVITY_N">
+<html lang>
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="捋不清的源码---Activity启动模式相关">
+
+
+
+
+  <meta name="keywords" content="源码,">
+
+
+
+
+
+  <link rel="alternate" href="/uuluu.github.io/default" title="LLL_">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/uuluu.github.io/favicon.ico?v=1.1">
+
+
+
+<link rel="canonical" href="http://yoursite.com/2019/06/05/捋不清的源码-Activity启动模式相关/">
+
+
+<meta name="description" content="源码基于Android 8.1  Launcher.java12345678910111213141516171819202122232425public boolean startActivitySafely(View v, Intent intent, ItemInfo item) &amp;#123;    ...    intent.addFlags(Intent.FLAG_ACTIVITY_N">
+<meta name="keywords" content="源码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="捋不清的源码---Activity启动模式相关">
 <meta property="og:url" content="http://yoursite.com/2019/06/05/捋不清的源码-Activity启动模式相关/index.html">
-<meta property="og:site_name" content="uuluu">
+<meta property="og:site_name" content="LLL_">
 <meta property="og:description" content="源码基于Android 8.1  Launcher.java12345678910111213141516171819202122232425public boolean startActivitySafely(View v, Intent intent, ItemInfo item) &amp;#123;    ...    intent.addFlags(Intent.FLAG_ACTIVITY_N">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-02T05:14:21.694Z">
+<meta property="og:updated_time" content="2019-08-02T05:39:14.914Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="捋不清的源码---Activity启动模式相关">
 <meta name="twitter:description" content="源码基于Android 8.1  Launcher.java12345678910111213141516171819202122232425public boolean startActivitySafely(View v, Intent intent, ItemInfo item) &amp;#123;    ...    intent.addFlags(Intent.FLAG_ACTIVITY_N">
+
+
+<link rel="stylesheet" type="text/css" href="/uuluu.github.io/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
   
-  <link rel="stylesheet" href="/uuluu.github.io/css/index.css">
-</head>
-</html>
-<body style="
 
 
-  background-color: #eff0f6
 
-">
-  <div id="container">
-    <nav id="nav">
-  <header class="header">
-    <a href="/" class="title">uuluu</a>
-  </header>
-  <div class="ctnWrap">
-    <div class="icons">
-      
+    <title> 捋不清的源码---Activity启动模式相关 - LLL_ </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/uuluu.github.io/." class="logo">LLL_</a>
+    </h1>
+
+    <nav id="nav-top">
         
-          
-            <a href="https://dribbble.com/clovertuan" target="_blank" class="nav-icn iconfont icon-dribbble"></a>
-          
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/uuluu.github.io/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/uuluu.github.io/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
         
-          
-            <a href="https://www.behance.net/clovertuan" target="_blank" class="nav-icn iconfont icon-behance"></a>
-          
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
         
-          
-            <a href="http://clovertuan.lofter.com/" target="_blank" class="nav-icn iconfont icon-lofter"></a>
-          
+    <div id="primary">
         
-          
-            <a href="https://www.instagram.com/clovertuan/" target="_blank" class="nav-icn iconfont icon-instagram"></a>
-          
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
         
-          
-            <a href="https://github.com/cloverTuan" target="_blank" class="nav-icn iconfont icon-github"></a>
-          
+          捋不清的源码---Activity启动模式相关
         
-      
-    </div>
-    <div class="menu">
-      
-        
-            <a href="/uuluu.github.io/" class="nav-menu ">HOME</a>
-          
-        
-            <a href="/uuluu.github.io/archives" class="nav-menu ">ARCHIVE</a>
-          
-        
-            <a href="/uuluu.github.io/about" class="nav-menu ">ABOUT</a>
-          
-        
-      
-    </div>
-  </div>
-</nav>
-    <div id="main"><section class="article">
-  <h2 class="title">捋不清的源码---Activity启动模式相关</h2>
-  <p class="sub">Jun 5, 2019</p>
-  <article class="content">
-    <blockquote>
+      </h1>
+
+      <time class="post-time">
+          Jun 05 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <blockquote>
 <p>源码基于Android 8.1</p>
 </blockquote>
 <h4 id="Launcher-java"><a href="#Launcher-java" class="headerlink" title="Launcher.java"></a>Launcher.java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">startActivitySafely</span><span class="params">(View v, Intent intent, ItemInfo item)</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (Utilities.ATLEAST_MARSHMALLOW</span><br><span class="line">                &amp;&amp; (item <span class="keyword">instanceof</span> ShortcutInfo)</span><br><span class="line">                &amp;&amp; (item.itemType == Favorites.ITEM_TYPE_SHORTCUT</span><br><span class="line">                    || item.itemType == Favorites.ITEM_TYPE_DEEP_SHORTCUT)</span><br><span class="line">                &amp;&amp; !((ShortcutInfo) item).isPromise()) &#123;</span><br><span class="line">            <span class="comment">// Shortcuts need some special checks due to legacy reasons.</span></span><br><span class="line">            startShortcutIntentSafely(intent, optsBundle, item);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (user == <span class="keyword">null</span> || user.equals(Process.myUserHandle())) &#123;</span><br><span class="line">            <span class="comment">// start</span></span><br><span class="line">            startActivity(intent, optsBundle);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            LauncherAppsCompat.getInstance(<span class="keyword">this</span>).startActivityForProfile(</span><br><span class="line">                    intent.getComponent(), user, intent.getSourceBounds(), optsBundle);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ActivityNotFoundException|SecurityException e) &#123;</span><br><span class="line">        Toast.makeText(<span class="keyword">this</span>, R.string.activity_not_found, Toast.LENGTH_SHORT).show();</span><br><span class="line">        Log.e(TAG, <span class="string">"Unable to launch. tag="</span> + item + <span class="string">" intent="</span> + intent, e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -93,43 +146,87 @@
 <h4 id="标记2：getReusableIntentActivity"><a href="#标记2：getReusableIntentActivity" class="headerlink" title="标记2：getReusableIntentActivity"></a>标记2：getReusableIntentActivity</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取可以复用的Task</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> ActivityRecord <span class="title">getReusableIntentActivity</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//排除了standard和singleTop这两种启动模式</span></span><br><span class="line">    <span class="keyword">boolean</span> putIntoExistingTask = ((mLaunchFlags &amp; FLAG_ACTIVITY_NEW_TASK) != <span class="number">0</span> &amp;&amp;</span><br><span class="line">            (mLaunchFlags &amp; FLAG_ACTIVITY_MULTIPLE_TASK) == <span class="number">0</span>)</span><br><span class="line">            || mLaunchSingleInstance || mLaunchSingleTask;</span><br><span class="line">    </span><br><span class="line">    putIntoExistingTask &amp;= mInTask == <span class="keyword">null</span> &amp;&amp; mStartActivity.resultTo == <span class="keyword">null</span>;</span><br><span class="line">    ActivityRecord intentActivity = <span class="keyword">null</span>;</span><br><span class="line">  	<span class="comment">//当准确知道目标Activity会具体在哪个Task内，getLaunchTaskId不会为-1</span></span><br><span class="line">    <span class="keyword">if</span> (mOptions != <span class="keyword">null</span> &amp;&amp; mOptions.getLaunchTaskId() != -<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">final</span> TaskRecord task = mSupervisor.anyTaskForIdLocked(mOptions.getLaunchTaskId());</span><br><span class="line">        intentActivity = task != <span class="keyword">null</span> ? task.getTopActivity() : <span class="keyword">null</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (putIntoExistingTask) &#123;</span><br><span class="line">        <span class="keyword">if</span> (mLaunchSingleInstance) &#123;</span><br><span class="line">            <span class="comment">//SingleInstance,搜索所有的stack以及从栈顶到底遍历task去寻找对应的Activity</span></span><br><span class="line">            <span class="comment">//找不到返回null</span></span><br><span class="line">            <span class="comment">//主要比较的是Intent的Action、Data、Type、Categories、Package、Component</span></span><br><span class="line">            <span class="comment">//或者是Component，根据findActivityLocked最后一个参数判断</span></span><br><span class="line">            intentActivity = mSupervisor.findActivityLocked(mIntent, mStartActivity.info,</span><br><span class="line">                   mStartActivity.isHomeActivity());</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> ((mLaunchFlags &amp; FLAG_ACTIVITY_LAUNCH_ADJACENT) != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">//分屏相关</span></span><br><span class="line">            intentActivity = mSupervisor.findActivityLocked(mIntent, mStartActivity.info,</span><br><span class="line">                    !mLaunchSingleTask);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//遍历每个stack里面的Task，task.getTopActivity获取栈顶的Activity</span></span><br><span class="line">            <span class="comment">//主要比较的是这个目标Activity的Intent的ComponentName和Task的Intent的ComponentName  </span></span><br><span class="line">            <span class="comment">//以及他们的TaskAffinity，所以得到一个复用的Task，返回复用Task栈顶的ActivityRecord</span></span><br><span class="line">            intentActivity = mSupervisor.findTaskLocked(mStartActivity, mSourceDisplayId);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> intentActivity;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="标记3：setTaskFromIntentActivity"><a href="#标记3：setTaskFromIntentActivity" class="headerlink" title="标记3：setTaskFromIntentActivity"></a>标记3：setTaskFromIntentActivity</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setTaskFromIntentActivity</span><span class="params">(ActivityRecord intentActivity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ((mLaunchFlags &amp; (FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK))</span><br><span class="line">                == (FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK)) &#123;</span><br><span class="line">            <span class="comment">//获取重用的Task</span></span><br><span class="line">            <span class="keyword">final</span> TaskRecord task = intentActivity.getTask();</span><br><span class="line">            <span class="comment">//清除该Task内的所有Activity</span></span><br><span class="line">            task.performClearTaskLocked();</span><br><span class="line">            <span class="comment">//对Task重新赋值</span></span><br><span class="line">            mReuseTask = task;</span><br><span class="line">            mReuseTask.setIntent(mStartActivity);</span><br><span class="line"></span><br><span class="line">            mMovedOtherTask = <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> ((mLaunchFlags &amp; FLAG_ACTIVITY_CLEAR_TOP) != <span class="number">0</span></span><br><span class="line">                || mLaunchSingleInstance || mLaunchSingleTask) &#123;</span><br><span class="line">            <span class="comment">//清除目标Activity在Task中对应位置上面的所有Activity</span></span><br><span class="line">            <span class="comment">//跟上面的处理的是一样的</span></span><br><span class="line">            ActivityRecord top = intentActivity.getTask().performClearTaskLocked(mStartActivity,</span><br><span class="line">                    mLaunchFlags);</span><br><span class="line">            <span class="keyword">if</span> (top == <span class="keyword">null</span>) &#123;</span><br><span class="line">                </span><br><span class="line">                mAddingToTask = <span class="keyword">true</span>;</span><br><span class="line">              	<span class="comment">//把目标Activity的Task设置为null，后面需重新计算该Activity需要放置的Task</span></span><br><span class="line">                mStartActivity.setTask(<span class="keyword">null</span>);</span><br><span class="line">                </span><br><span class="line">                mSourceRecord = intentActivity;</span><br><span class="line">                <span class="keyword">final</span> TaskRecord task = mSourceRecord.getTask();</span><br><span class="line">                <span class="keyword">if</span> (task != <span class="keyword">null</span> &amp;&amp; task.getStack() == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    </span><br><span class="line">                    mTargetStack = computeStackFocus(mSourceRecord, <span class="keyword">false</span> <span class="comment">/* newTask */</span>,</span><br><span class="line">                            <span class="keyword">null</span> <span class="comment">/* bounds */</span>, mLaunchFlags, mOptions);</span><br><span class="line">                    mTargetStack.addTask(task,</span><br><span class="line">                            !mLaunchTaskBehind <span class="comment">/* toTop */</span>, <span class="string">"startActivityUnchecked"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (mStartActivity.realActivity.equals(intentActivity.getTask().realActivity)) &#123;</span><br><span class="line">            <span class="comment">//如果重用的Activity和目标的Activity一样，并且是SingleTop的情况下</span></span><br><span class="line">            <span class="keyword">if</span> (((mLaunchFlags &amp; FLAG_ACTIVITY_SINGLE_TOP) != <span class="number">0</span> || mLaunchSingleTop)</span><br><span class="line">                    &amp;&amp; intentActivity.realActivity.equals(mStartActivity.realActivity)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (intentActivity.frontOfTask) &#123;</span><br><span class="line">                    intentActivity.getTask().setIntent(mStartActivity);</span><br><span class="line">                &#125;</span><br><span class="line">              	<span class="comment">//onNewIntent</span></span><br><span class="line">                deliverNewIntent(intentActivity);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!intentActivity.getTask().isSameIntentFilter(mStartActivity)) &#123;</span><br><span class="line">                <span class="comment">//Task的Intent和目标Activity的Intent不同</span></span><br><span class="line">                <span class="comment">//表示不能复用Activity</span></span><br><span class="line">                mAddingToTask = <span class="keyword">true</span>;</span><br><span class="line">                mSourceRecord = intentActivity;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> ((mLaunchFlags &amp; FLAG_ACTIVITY_RESET_TASK_IF_NEEDED) == <span class="number">0</span>) &#123;</span><br><span class="line">            </span><br><span class="line">            mAddingToTask = <span class="keyword">true</span>;</span><br><span class="line">            mSourceRecord = intentActivity;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!intentActivity.getTask().rootWasReset) &#123;</span><br><span class="line">            </span><br><span class="line">            intentActivity.getTask().setIntent(mStartActivity);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="标记4：setTaskFromReuseOrCreateNewTask"><a href="#标记4：setTaskFromReuseOrCreateNewTask" class="headerlink" title="标记4：setTaskFromReuseOrCreateNewTask"></a>标记4：setTaskFromReuseOrCreateNewTask</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">setTaskFromReuseOrCreateNewTask</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            TaskRecord taskToAffiliate, <span class="keyword">int</span> preferredLaunchStackId, ActivityStack topStack)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//主要是获取或创建ActivityStack，具体操作如下：</span></span><br><span class="line">    <span class="comment">//1.如果mReuseTask不为空则直接使用该Task对应的ActivityStack</span></span><br><span class="line">    <span class="comment">//注：mReuseTask在清除Task所有Activity的时候进行了赋值以及指定了mInTask的时候</span></span><br><span class="line">    <span class="comment">//2.根据目标Activity的类型获取对应的ActivityStack</span></span><br><span class="line">    <span class="comment">//3.前台ActivityStack不为空，并且该Stack的顶部的Task等于目标Activity的Task，则返回前台ActivityStack</span></span><br><span class="line">    <span class="comment">//4.判断目标Activity对应的Task所在的ActivityStack是否存在</span></span><br><span class="line">    <span class="comment">//5.遍历当前屏幕下的所有ActivityStack，如果是动态创建的Stack，则返回</span></span><br><span class="line">    <span class="comment">//6.最终创建一个ActivityStack</span></span><br><span class="line">    mTargetStack = computeStackFocus(</span><br><span class="line">                mStartActivity, <span class="keyword">true</span>, mLaunchBounds, mLaunchFlags, mOptions)</span><br><span class="line">    <span class="keyword">if</span> (mReuseTask == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">//通过ActivityStack新建TaskRecord</span></span><br><span class="line">        <span class="comment">//加入到TaskHistory</span></span><br><span class="line">        <span class="keyword">final</span> TaskRecord task = mTargetStack.createTaskRecord(</span><br><span class="line">                    mSupervisor.getNextTaskIdForUserLocked(mStartActivity.userId),</span><br><span class="line">                    mNewTaskInfo != <span class="keyword">null</span> ? mNewTaskInfo : mStartActivity.info,</span><br><span class="line">                    mNewTaskIntent != <span class="keyword">null</span> ? mNewTaskIntent : mIntent, mVoiceSession,</span><br><span class="line">                    mVoiceInteractor, !mLaunchTaskBehind <span class="comment">/* toTop */</span>, mStartActivity.mActivityType);</span><br><span class="line">        <span class="comment">//将目标Activity添加到该Task顶部</span></span><br><span class="line">        addOrReparentStartingActivity(task, <span class="string">"setTaskFromReuseOrCreateNewTask - mReuseTask"</span>);</span><br><span class="line">        ...</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        addOrReparentStartingActivity(mReuseTask, <span class="string">"setTaskFromReuseOrCreateNewTask"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">if</span> (mDoResume) &#123;</span><br><span class="line">        <span class="comment">//移动到前台</span></span><br><span class="line">        mTargetStack.moveToFront(<span class="string">"reuseOrNewTask"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-  </article>
-  <footer class="f-cf">
+            </div>
+          
+
     
-      <a href="/uuluu.github.io/2019/08/02/捋不清的源码-Activity启动流程相关/" class="link f-fl">⟵捋不清的源码---Activity启动流程相关</a>
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/uuluu.github.io/tags/源码/">源码</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/uuluu.github.io/2019/08/02/捋不清的源码-Activity启动流程相关/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">捋不清的源码---Activity启动流程相关</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
     
     
-      <a href="/uuluu.github.io/2019/04/24/my-site/" class="link f-fr">Android事件分发学习记录⟶</a>
+      <a class="next" href="/uuluu.github.io/2019/04/24/my-site/">
+        <span class="next-text nav-default">Android事件分发学习记录</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
-  </footer>
-</section></div>
-    <footer id="footer" class="f-cf">
-  d.guangying@foxmail.com
-  
+  </nav>
+
+        
+  <div class="comments" id="comments">
     
-      
-        · <a href="https://dribbble.com/clovertuan" target="_blank" class="nav-icn">Dribbble</a>
-      
-    
-      
-        · <a href="https://www.behance.net/clovertuan" target="_blank" class="nav-icn">Behance</a>
-      
-    
-      
-        · <a href="http://clovertuan.lofter.com/" target="_blank" class="nav-icn">Lofter</a>
-      
-    
-      
-        · <a href="https://www.instagram.com/clovertuan/" target="_blank" class="nav-icn">Instagram</a>
-      
-    
-      
-        · <a href="https://github.com/cloverTuan" target="_blank" class="nav-icn">GitHub</a>
-      
-    
-  
-  <span class="copyright">All rights reserved @Clover Tuan</span>
-</footer>
   </div>
-</body>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">uu.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/uuluu.github.io/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/uuluu.github.io/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/uuluu.github.io/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
 </html>
